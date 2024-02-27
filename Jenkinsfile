@@ -35,5 +35,21 @@ pipeline {
  }
  }
  }
+ 
+
+		stage('Pull and Run Docker Image') {
+            steps {
+                script {
+                    // Define the Docker image name
+                    def imagename = 'bhatnootana/jenkins-docker:tag'
+                    
+                    // Pull the Docker image
+                    sh "docker pull $imagename"
+                    
+                    // Run the Docker container
+                    sh "docker run -d --name my_container $imagename"
+                }
+            }
+        }
  }
 }
